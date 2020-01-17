@@ -1,3 +1,4 @@
+/* --------header-------- */
 * {box-sizing: border-box;}
 body{
     margin: 0;
@@ -19,15 +20,18 @@ body{
 .title {
     background: gold;
     margin: 10px;
-
 }
 .search {
     background: gold;
     margin: 10px;
-
 }
 .params {
     background: gold;
     margin: 10px;
-
+}
+/* --------2n div--------- */
+.publicaions{
+    background: gold;
+    width: 80vh;
+    height: 60vh;
 }
