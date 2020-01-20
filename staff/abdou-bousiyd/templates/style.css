@@ -4,9 +4,9 @@
 
 body{
     margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: ghostwhite;
-  height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: ghostwhite;
+    height: 100vh;
 }
 .header {
     display: flex;
@@ -24,9 +24,6 @@ body{
     padding-left: 5%;
     display: flex;
     margin: 5px;
-    border-radius: 1px solid;
-    display: flex;
-    width: 20%;
     font-size: 25px;
 }
 .logo span {
@@ -112,9 +109,8 @@ body{
 .post-titls span {margin: 25px;}
 .post-titls img {height: 50px; width: 50px; border-radius: 50%;}
 
-
-
-
+/* -----------profile-------------- */
+/* -----------profile-------------- */
 
 
 
