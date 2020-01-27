@@ -49,23 +49,37 @@ body{
     margin: 10px;
     width: 15%;
 }
-
-/* --------2n div--------- */
-.content {
+/**---------------------**/
+.container {
     margin-top: 15vh;
     display: flex;
     justify-content: space-around;
 }
-.post {
-    margin-top: 20px;
-    background-color: white;
-}
-.post-content {
-    padding: 10px;
-}
 .post-title {
     display: flex;
-    padding: 10px;
+    justify-content: space-around;
+    padding: 15px;
+}
+.post-perfil {
+    display: flex;
+    margin-top: 20px;
+}
+.button {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    height: 30%;
+    margin-top:25px;
+}
+.iconParams {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-top:25px;
+}
+.name {
+    display: flex;
+    font-size: x-large;    
 }
 
 .post-title span {
@@ -73,50 +87,41 @@ body{
 }
 
 .post-title img {
-    height: 60px;
-    width: 60px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
+    margin-top: 5px;
 }
-.favorite {
-    color: red;
-}
+
 /*-----------3r div---------------*/
-
-.post-content-right {
-    background: rgb(255, 255, 255);
-    width: 100%;
-    padding: 10%;
-    border-radius: 5px;
-    box-shadow: 0px 3px gainsboro;
+.post-titls span {
+    margin: 50px;
 }
-.post-histoy-pub{
+.post-titls img {
+    height: 60px; 
+    width: 60px; 
+    border-radius: 80%;
+}
+/* -----------fotos content-------------- */
+.fotos-content{
     display: flex;
-    justify-content: space-between !important;
-    height: 15x;
+    justify-content: space-around;
+    margin-top: 2%;
 }
-
-.post-titls {
+.tq{
     display: flex;
     justify-content: space-evenly;
-    margin-top: 15px;
+    margin-top: 2%;
 }
-.aside {
-    width: 350px;
-    margin-top: 20px;
-    position: fixed;
-    margin-left: -180px;
+.footer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    color: blue;
 }
-.post-titls span {margin: 25px;}
-.post-titls img {height: 50px; width: 50px; border-radius: 50%;}
-
-/* -----------profile-------------- */
-/* -----------profile-------------- */
 
 
-
-
-
-
+/* -------------PROFIL----------- */
 
 
 @media only screen and (max-width: 900px) {
