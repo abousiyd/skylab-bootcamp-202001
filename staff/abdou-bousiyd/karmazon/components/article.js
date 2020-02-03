@@ -9,7 +9,6 @@ function Article(result, onClick) {
     article.innerHTML = '<h3 class="article__name">' + result.name + '</h3>'
         .concat('<img class="article__photo" src="' + result.thumbnail + '"></img>')
         .concat('<span class="article__price">' + result.price + '$</span>')
-        //.concat('<span>' + result.id + '</span>')
 
     article.querySelector('img').addEventListener('click', function() {
         var id = result.id

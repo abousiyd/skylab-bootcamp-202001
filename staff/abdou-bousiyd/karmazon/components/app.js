@@ -16,7 +16,6 @@ function App(props) {
 
                 _login.container.replaceWith(_search.container);
             } catch (error) {
-                //alert(error.message + ' ' + IT);
                 _login.showError(error.message + ' ' + IT);
             }
         },
