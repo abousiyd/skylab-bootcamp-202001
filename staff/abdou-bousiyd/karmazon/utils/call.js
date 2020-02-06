@@ -1,30 +1,29 @@
-'use strict';
+function call(url, options = { method: 'GET' }, callback) {
+    const URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
 
-var URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+    const { method, headers, body } = options
 
-function call(url, callback) {
-    if (typeof url !== 'string') throw new TypeError(url + ' is not a string');
-    if (!URL_REGEX.test(url)) throw new SyntaxError(url + ' is not an url');
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+    if(!(URL_REGEX.test(url))) {
+        throw new SyntaxError(url + ' is not a valid url')
+    }
 
-    var xhr = new XMLHttpRequest;
+    const xhr = new XMLHttpRequest
 
-    xhr.open('GET', url);
+    xhr.open(method, url)
 
-    xhr.addEventListener('load', function (event) {
-        var self = event.target;
+    for(key in headers) {
+        xhr.setRequestHeader(key, headers[key])
+    }
 
-        callback({
-            //content: this.responseText,
-            content: self.responseText,
-            //status: this.status
-            status: self.status
-        });
-    });
+    xhr.addEventListener('load', function() {
 
-    xhr.addEventListener('error', function() {
-        callback(new Error('Network error'));
-    });
+        callback( {
+            content: this.responseText,
+            status: this.status
+        } )
+    })
 
-    xhr.send();
+    xhr.addEventListener('error', () => callback(new Error('Network error')))
+
+    xhr.send(body)
 }
