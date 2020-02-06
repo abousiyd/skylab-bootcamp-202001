@@ -2,6 +2,8 @@ function updateUser(user, token, callback) {
 
     if (typeof token !== 'string') throw new TypeError(`token ${token} is not a string`)
 
+    // if (typeof password !== 'string') throw new TypeError(`surname ${surname} is not a string`)
+
     
     call('https://skylabcoders.herokuapp.com/api/v2/users/', {
         method: 'PATCH',
