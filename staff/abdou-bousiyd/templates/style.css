@@ -94,6 +94,11 @@ body{
 }
 
 /*-----------3r div---------------*/
+.aside {
+    background-color: white
+
+}
+
 .post-titls span {
     margin: 50px;
 }
