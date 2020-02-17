@@ -50,6 +50,49 @@ body{
     width: 15%;
 }
 /**---------------------**/
+.containerFeed {
+    margin-top: 15vh;
+    display: flex;
+    justify-content: space-around;
+}
+.post-title-feed {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+.post-perfil {
+    display: flex;
+    margin-top: 20px;
+}
+.button {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    height: 30%;
+    margin-top:25px;
+}
+.iconParams {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-top:25px;
+}
+.name {
+    display: flex;
+    font-size: x-large;    
+}
+
+.post-title-feed span {
+    margin: 20px;
+}
+
+.post-title-feed img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+/* --------2n div--------- */
 .container {
     margin-top: 15vh;
     display: flex;
@@ -93,12 +136,39 @@ body{
     margin-top: 5px;
 }
 
+
 /*-----------3r div---------------*/
 .aside {
     background-color: white
 
 }
-
+.post-title-aside {
+    display: flex;
+    justify-content: space-around;
+    margin: px;
+}
+.post-title-aside span {
+    display: flex;
+    margin-top: 50px;
+    font-size: 25px;
+}
+.post-histoy-pub {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+.post-titls {
+    padding: 20px;
+}
+.post-titls span {
+    padding: 15px;
+}
+.post-title-aside img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 25px;
+}
 .post-titls span {
     margin: 50px;
 }
@@ -124,7 +194,16 @@ body{
     margin-top: 2%;
     color: blue;
 }
-
+.fotos-content-perfil{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10%;
+}
+.fotos-content-perfil img{
+    display: flex;
+    justify-content: space-around;
+    height: 600px;
+}
 
 /* -------------PROFIL----------- */
 
