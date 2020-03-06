@@ -1,4 +1,4 @@
-function updateProduct(token, duck, update, callback) {
+function updateProduct(token, duck, action, callback) {
     if (typeof callback !== 'function') throw new TypeError(`callback ${callback} is not a function`)
     if (typeof token !== 'string') throw new TypeError(`token ${token} is not a string`)
         // if (typeof idProduct !== 'string') throw new TypeError(`id ${idProduct} is not a string`)
@@ -24,8 +24,7 @@ function updateProduct(token, duck, update, callback) {
             if (_error) return callback(new Error(_error))
             
             // destructuro la informacion del usuario y si no tiene favs le asigna un array vacio por defecto
-            const { name, surname, username, myCart = {id: sub, products: [] }} = data
-            console.log(data, 5555)
+            const { name, surname, username, myCart = {products: [] }} = data
     
             // enviar info del user sin error
             callback(undefined, { name, surname, username, myCart })
@@ -33,18 +32,28 @@ function updateProduct(token, duck, update, callback) {
             //---
             if (error) return callback(error)
 
-            const {myCart: {id, products}} = data
-           // const { myCart: {id, products} } = user
-    
+            // const {myCart: {id, products}} = data
+           let {id, products} = myCart
+
             // si hay el id la elimino y si no hay la añado
-            if(update === 'add') {
+            if(action === 'add') {
                 products.push(duck)
             }
     
-            if(update === 'remove') {
+            if(action === 'remove') {
                 products.remove(duck.id)
             }
     
+            if(action === 'removeAllById') {
+                products = products.filter(_value => _value.id !== duck.id)
+            }
+
+            if(action === 'logout') {
+                products = products.filter(_value => _value.id !== duck.id)
+            }
+
+
+
             const newCart = {myCart:{id, products}}
     
             call(`https://skylabcoders.herokuapp.com/api/v2/users/`, {
@@ -65,6 +74,8 @@ function updateProduct(token, duck, update, callback) {
     
                     if (error) return callback(new Error(error))
                 }
+
+                // devolver todo el usuario cn el mycart actualizado
                 callback(undefined, {...data, ...newCart})
             })
         })

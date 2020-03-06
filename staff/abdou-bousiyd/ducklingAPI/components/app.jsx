@@ -2,7 +2,7 @@ const { Component } = React
 
 class App extends Component {
 
-    state = { view: null, user: null, error: null, query: null, ducks: null}
+    state = { view: 'search', user: null, items: null, error: null, query: null, ducks: null, logout: null}
 
     componentDidMount() {
         const {token} = sessionStorage
@@ -11,11 +11,12 @@ class App extends Component {
             this.getUser(token)
         }else{
             console.log('no tengo token')
-            this.handleLogout()
+            //this.handleLogout()
         }
     }
 
-    handleLogout() {
+    handleLogout = ()  => {
+        console.log(this)
         this.setState({ view: 'login', user: null })
     }
 
@@ -68,13 +69,11 @@ class App extends Component {
     handleSearch = (query) => {
         try{
             searchDucks(query, (error, ducks) => {
-                console.log(ducks)
                 if (error) {
                     return this.handleError(error)
                 }
                 this.setState({ view: 'search', ducks, query, error: ducks.length ? undefined : 'No results'})
             })
-            console.log('buscando')
         }catch (error) {
             this.handleError(error)
         }
@@ -100,7 +99,9 @@ class App extends Component {
     onToLogin = () => {
         this.setState({ view: 'login' })
     }
-
+    onToMyProducts = () => {
+        this.setState({ view: 'myProducts' })
+    }
     render() {
         const {
             state: {
@@ -111,22 +112,26 @@ class App extends Component {
             handleRegister,
             onToLogin,
             handleSearch,
-            handleUpdateProduct
+            handleUpdateProduct,
+            onToMyProducts,
+            handleLogout
 
         } = this
 
         return(
             <main>
-                {user && <h2>Welcome {user.username}.</h2>}
+                <header>
+                    {view === 'search' && <Logout user={user} handleLogout={handleLogout} /> }
+                    {user && <h2 className="nameUser" ><i className="material-icons">face</i>Welcome {user.username}</h2>}
+                    {view === 'search' && <Search query={query} handleSearch={handleSearch}/>}
+                    {view === 'search' && <Cart user={user} onToMyProducts={onToMyProducts} />}
+                </header>
+
+                
                 {view === 'login' && <Login handleLogin={handleLogin} onToRegister={onToRegister} />}
                 {view === 'register' && <Register handleRegister={handleRegister} onToLogin={onToLogin}/>}
-                {view === 'search' && <Search query={query} handleSearch={handleSearch}/>}
-
-                {view === 'search' && ducks && <Ducks user={user} ducks={ducks} handleUpdateProduct={handleUpdateProduct} />}
-
-
-                {view === 'search' && ducks && <Ducks user={user} ducks={ducks}  />}
-
+                {view === 'myProducts' && user && <MyProducts ducks={ducks} user={user} handleUpdateProduct={handleUpdateProduct} />}
+                {view === 'search' && ducks && <Ducks user={user} ducks={ducks} handleUpdateProduct={handleUpdateProduct} />}               
                 {error && <p>{error}</p>}
             </main>
         )

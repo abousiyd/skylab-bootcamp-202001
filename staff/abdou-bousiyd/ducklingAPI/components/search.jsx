@@ -9,7 +9,7 @@ function Search({query, handleSearch}) {
         handleSearch(newQuery)
     }
     return <form className="search" onSubmit={handleOnSubmit}>
-                <h2>Search</h2>
+                <h2 className="titleSearch">Search</h2>
                 <input type="text" name="query" placeholder="criteria" defaultValue={query, 'green'} />
                 <button type="submit">Search</button>
             </form>

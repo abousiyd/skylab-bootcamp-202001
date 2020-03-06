@@ -1,4 +1,5 @@
 function Duck(props) {
+    //function duck({ duck: {id, title, imageUrl, price}, user, handleToggleProduct, handleDetail })
     const { duck, user, handleUpdateProduct} = props
     const { id, title, imageUrl, price} = duck
     let totalProducts = 0
@@ -9,14 +10,14 @@ function Duck(props) {
     }
 
     return <li className="results--item item">
-        <h3>
-            {title}
-        </h3>
-        <span onClick={() => handleUpdateProduct(duck, 'add')}><i className="material-icons">add</i></span>
-        <span onClick={() => handleUpdateProduct(duck, 'remove')}><i className="material-icons">remove</i></span>
+        <div className="itemCart">
+            <h3>{title}</h3>
+            <span onClick={() => handleUpdateProduct(duck, 'add')}><i className="material-icons">add_shopping_cart</i></span>
+            <span onClick={() => handleUpdateProduct(duck, 'remove')}><i className="material-icons">remove_shopping_cart</i></span>
+            <h3> {totalProducts && totalProducts}</h3>
+        </div>
 
-        <h3> {totalProducts && totalProducts}</h3>
-        <img src={imageUrl}/>
-        <span>{price} €</span>
+        <img className="imgDuck" src={imageUrl}/>
+        <span className="priceCart">{price} €</span>
     </li>
 }

@@ -1,4 +1,5 @@
-if (typeof Array.prototype.update === 'undefined')
+// verifico d¡si la function remove existe en prototype de array
+if (typeof Array.prototype.remove === 'undefined')
     // agregamos la funcionalidad toggle al array (cn prototyp agregamos mas metodos)
     Array.prototype.remove = function (value) {
 
