@@ -3,7 +3,7 @@ function MyProducts({user,  handleUpdateProduct}) {
     
         let repitedDuck = []
         
-    return <ul className="resultsCart">
+    return <ul className="results">
     {products.map(duck => {
         const { id, title, imageUrl, price} = duck
         
@@ -20,9 +20,9 @@ function MyProducts({user,  handleUpdateProduct}) {
         }
     
         repitedDuck.push(duck.id)
-        return <li className="resultsItemCart">
+        return <li className="results__item">
             
-        <div className="myProductTitle">
+        <div className="titls">
 
             <h3>{title}</h3>
                 <span onClick={() =>  handleUpdateProduct(duck, 'add')}><i className="material-icons">add_shopping_cart</i></span>
@@ -45,9 +45,6 @@ function MyProducts({user,  handleUpdateProduct}) {
 
             </div>
         </div>
-    
-
-    
     </li>
     })}
     </ul>

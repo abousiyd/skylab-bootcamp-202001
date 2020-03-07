@@ -1,0 +1,30 @@
+.results 
+    background-color: #FDFDFA
+    list-style: none
+
+    .results__img
+        border-radius: 10px
+        box-shadow: 0px 0px 0px 1px rgb(236, 231, 231)
+        transition: transform 2s, filter 2s ease-in-out
+        transform-origin: center center
+        filter: brightness(99.2%)
+
+    .results__img:hover img 
+        filter: brightness(150%)
+        transform: scale(1.5)
+
+
+    .results__item
+        display: flex
+        justify-content: space-evenly
+        width: 80%
+        margin-top: 10px
+        cursor: pointer
+
+    .results__item span 
+        margin-top: 15px
+
+    .results__price
+        display: flex
+        padding: 10px
+        font-size: 20px
