@@ -5,9 +5,9 @@ import './crypto.sass';
 
 function Crypto(props){
     
-    const {cryptoInfo: {priceUsd, name, changePercent24Hr, symbol, id}, full, showButtonInfo} = props
+    const {cryptoInfo: {priceUsd, name, changePercent24Hr, symbol, id}, full} = props
 
-    console.log(props)
+    // console.log(props)
     
     let divClassName = ''
     // modificador 
@@ -15,30 +15,35 @@ function Crypto(props){
         divClassName = 'crypto--full'
     }
 
-    return(            // block y modificador si existe la prop full
+    const percent = parseFloat(changePercent24Hr).toFixed(2)
+    const price = parseFloat(priceUsd).toFixed(2)
+
+    const stateClassName = Math.sign(percent) === -1 ? 'red' : 'green'
+
+    return( 
         <div className={`crypto ${divClassName}`}>
 
-            <img src={`https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}  />
-            <h1 className="crypto__title">{name}</h1>
-            <p className="crypto__state">Estado: {parseFloat(changePercent24Hr).toFixed(2) }</p>
-            <p className="crypto__price">Precio: {parseFloat(priceUsd).toFixed(2)} $ </p>
+            <div onClick={()=> props.history.push(`/crypto/${id.toLowerCase()}`)}>
 
-            <div className="crypto__buttons">
-                { showButtonInfo && <button  className="crypto__buttons__button1" onClick={()=> props.history.push(`/crypto/${id.toLowerCase()}`)}><span>More</span></button>}
-                <button className="crypto__buttons__button2" onClick={()=> props.history.push(`/chart/${id.toLowerCase()}`)}><span>Comprar</span></button>
+            
+            <img src={`https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}  alt="crypto_image"/>
+            <h4 className="crypto__title">{name}</h4>
+
+            <div className="crypto__info">
+                <p className={`crypto__info__state crypto__info__state--${stateClassName}`}>{percent}%</p>
+                <p className="crypto__info__price">{price}$</p>
             </div>
 
-            <div className="news">
 
-            </div>
+            </div>       
+
         </div>
     )
 }
+export default withRouter(Crypto);
 
 // cuando le doy click a more me lleva a una nueva ruta que es crypto/nameMoneda y
 // el nombre de la monida es dinameco puede ser tron o bitcoi... y me carga otra ruta 
 // en el componente me busco el nombre de la moneda props.match.{crypto: btn} y cargo el 
 // componente crypto info que cuando se monta en el componentedidmount me busca la crypto que tengo en la url 
 //y me setea el estado , en caso exeto me muesta y si no impremo error y rederecciono al /home
-
-export default withRouter(Crypto);

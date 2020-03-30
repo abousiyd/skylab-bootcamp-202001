@@ -1,0 +1,100 @@
+.news
+    &__langlist 
+        margin-bottom: -40px
+        display: flex
+        justify-content: space-around
+        &__lang
+            display: flex
+        span
+            margin: 0 20px
+            border-radius: 50%
+            width: 40px
+            height: 40px
+            background-color: #272724
+            font-weight: bold 
+            color: white
+            cursor: pointer
+            display: flex
+            justify-content: center
+            align-items: center
+        &__date
+            background: #272724
+            display: flex
+            border-radius: 4px
+            span 
+                background: transparent
+
+    &__section
+        margin: 50px 0
+        height: 600px
+        background: #272724
+        padding: 20px
+        display: flex
+        overflow: auto
+        &::-webkit-scrollbar
+            -webkit-appearance: none
+
+        &:horizontal
+            height: 15px
+
+        &::-webkit-scrollbar-thumb
+            border: 1px solid black
+            background-color: white
+
+        &::-webkit-scrollbar-track
+            width: 20px
+                    
+    &__title 
+        text-align: center
+        text-transform: uppercase
+        // background-color: red
+        @media (max-width: 800px)
+            // background-colçor: red 
+            margin-top: 60px
+            margin-right: 40px
+    &__date 
+        display: flex
+        justify-content: flex-end
+        
+    input[type="date"]
+        display: block
+        justify-content: flex-end
+        // margin-left: 990px
+        // background-color: red
+        position: relative
+        padding: 13px 50px 13px 5px
+        font-size: 13px
+        border: 1.3px solid #272724
+        border-radius: 0 5px 5px 0
+        background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 13px center no-repeat
+        cursor: pointer
+        &:focus
+            outline: none
+            border-color: #272724
+
+\::-webkit-datetime-edit, ::-webkit-datetime-edit-fields-wrapper
+
+\::-webkit-datetime-edit-month-field:hover, ::-webkit-datetime-edit-day-field:hover, ::-webkit-datetime-edit-year-field:hover
+  background: #272724
+
+\::-webkit-datetime-edit-text
+  opacity: 0
+
+\::-webkit-clear-button, ::-webkit-inner-spin-button
+  display: none
+
+\::-webkit-calendar-picker-indicator
+    position: absolute
+    width: 2.5rem
+    height: 100%
+    top: 0
+    right: 0
+    bottom: 0
+    opacity: 0
+    cursor: pointer
+    color: #272724
+    background: #272724
+
+    input[type="date"]:hover::-webkit-calendar-picker-indicator
+      opacity: 0.05
+      opacity: 0.15

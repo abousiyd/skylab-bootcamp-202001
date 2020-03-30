@@ -66,7 +66,7 @@ class CryptoChart extends Component {
           };
           this.setState({data})
 
-          console.log(data);
+          // console.log(data);
         } else {
           this.setState({ error: "crypto not found" });
 
@@ -82,13 +82,27 @@ class CryptoChart extends Component {
     const {
       state: {data, error }
     } = this;
+
+
+    const opt = {
+      
+      maintainAspectRatio: true,
+      scales: {
+          xAxes: [{
+              ticks: {
+                  display: true
+              }
+          }]
+      }
+    }
+
     
     return (
       <div className="chart">
         {/* <canvas id="myChart" width="400" height="400"></canvas> */}
         {/* <p>hola soy graphica de bitcoin</p> */}
         {/* <canvas className="myChart"></canvas> */}
-        {data && <Line data={data} />}
+        {data && <Line data={data} options={opt} />}
         {error && <p>{error}</p>}
       </div>
     );

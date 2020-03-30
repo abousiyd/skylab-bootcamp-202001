@@ -5,10 +5,12 @@ import Cryptos from '../Cryptos'
 import Login from "../Login";
 import Register from "../Register";
 import CryptoInfo from "../CryptoInfo"
-import CryptoHistory from "../Chart"
+import State from '../State'
+import addMethodToggleToArray from '../../utils/array.prototype.toggle'
+import News from '../News'
+import PrivateRoute from '../PrivateRoute'
 
-import TopBar from '../topBar'
-
+addMethodToggleToArray()
 class App extends Component {
 
 
@@ -16,16 +18,14 @@ class App extends Component {
 
     return( 
       <HashRouter>
-          {/* no hace falta utilizar  withRouter pk el componente router mete los props de routa histopy.... en componentes. */}
-          <Route exact path='/' component={Login}  />
-          <Route path='/register' component={Register} />
+          <Route  exact path='/' component={Cryptos}  />
           <Route path='/home' component={Cryptos} />
-          <Route path='/crypto/:crypto' component={CryptoInfo} />
-          {/* <Route path='/chart/:crypto' component={CryptoHistory} /> */}
+          <Route  exact path='/login' component={Login}  />
+          <Route path='/register' component={Register} />
 
-          <Route path='/topbar' component={TopBar} />
-
-
+          <PrivateRoute exact path='/crypto/:crypto' component={CryptoInfo} />
+          <PrivateRoute path='/state' component={State} />
+          <PrivateRoute path='/news' component={News} />
       </HashRouter>
 
     

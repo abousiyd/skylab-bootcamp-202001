@@ -1,16 +1,14 @@
 
-function getCryptos() {//debugger
-    
+function getState() {
     //devuelve una promisa.
-    return fetch('https://api.coincap.io/v2/assets?limit=50')
+    return fetch('https://api.coincap.io/v2/assets?limit=20')
     .then( function(response) {
         if(response.status === 200) {
             // console.log(response)
             return response.json()
         }
     })
-    
-    .then(function (response) {//debugger
+    .then(function (response) {
         // console.log(response.data)
         return response.data
     })
@@ -21,4 +19,4 @@ function getCryptos() {//debugger
         //manejar errores desconocidos
 }
 
-export default getCryptos;
+export default getState;

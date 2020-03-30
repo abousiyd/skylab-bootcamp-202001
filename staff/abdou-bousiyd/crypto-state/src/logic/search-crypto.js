@@ -10,7 +10,6 @@ function searchCrypto(query) {
         }
     })
     
-    // manejar otros errores de la api 400-417 client error. 505 server error
     .then(function (response) {
         if(response){
             // no siempre encuentra query

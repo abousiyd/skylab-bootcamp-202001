@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
-import retrieveUser from '../../logic/retrive-user'
-import logout from '../../logic/logout'
+import photo from './img/photo.png'
+import './Landing.sass'
 
-
-import './topBar.sass'
-
-class TopBar extends Component{
-    state = { user: {}}
-
-    componentDidMount() {
-        retrieveUser().then(user => {
-            this.setState({user})
-          })
-    }
+class Landing extends Component{
             
     handleClick = () => {
         const burger = document.querySelector('.burger')
@@ -36,9 +26,8 @@ class TopBar extends Component{
     
     render() {
 
-        const {state: {user: {username}}} = this
-
         return(
+        <div className="landing"> 
             <nav>
                 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"></link>
                 <div className="logo">
@@ -47,21 +36,23 @@ class TopBar extends Component{
 
                 <ul className="navLinks">
                     <li>
-                        <a href="#">Articles</a>
+                        <a href="#">Home</a>
                     </li>
 
                     <li>
-                        <a href="#">Cryptos</a>
+                        <a href="#">About</a>
                     </li>
 
                     <li>
-                        <a href="#">{username}</a>
+                        <a href="#">Project</a>
                     </li>
 
                     <li>
-                        <a href="#" onClick={logout}>Logout</a>
+                        <a href="#">Perfil</a>
                     </li>
                 </ul>
+
+                <span>Sign-Up</span>
 
                 <div className="burger" onClick={this.handleClick}>
                     <div className="line1"></div>
@@ -69,8 +60,23 @@ class TopBar extends Component{
                     <div className="line3"></div>
                 </div>
             </nav>
+
+            <div className="landingBanner">
+                <div className="landingBanner__app-text">
+                    <h1>our besic thesis for bitcoin </h1>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                        Nisi modi quas magni adipisci molestias sequi unde cupiditate.
+                        Pariatur aliquam? Perferendis, molestias consequatur. Earum dignissimos?
+                    </p>
+                </div>
+                <div className="app-picture">
+                    <img src={photo}  />
+                </div>
+            </div>
+        </div>
         )
     }
 }
 
-export default TopBar;
+export default Landing;
