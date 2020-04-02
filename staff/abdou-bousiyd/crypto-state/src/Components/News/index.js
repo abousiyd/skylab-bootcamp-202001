@@ -26,12 +26,12 @@ class News extends Component {
   }
 
   setLang = (lang) => {
-    this.setState({lang}, () => this.handleGetUserNews)
+    this.setState({lang}, () => this.handleGetUserNews())
   }
 
   setDate = (event) => {
     const date = event.target.value
-    this.setState({date}, this.handleGetUserNews)
+    this.setState({date}, () => this.handleGetUserNews())
   }
 
 

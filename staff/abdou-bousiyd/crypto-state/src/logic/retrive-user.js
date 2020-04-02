@@ -1,15 +1,13 @@
-// import logout from './logout'
+import logout from './logout'
 
 function retrieveUser() {
     const token = localStorage.getItem('token') 
-    // console.log(token)
-    // if(!token) return
-    // console.log(symbol)
+
     if (typeof token !== 'string') throw new TypeError(`token ${token} is not a string`)
 
     const [header, payload, signature] = token.split('.')
     if (!header || !payload || !signature) {
-        // logout()
+        logout()
     }
 
     const { sub } = JSON.parse(atob(payload)) // base64
@@ -25,13 +23,13 @@ function retrieveUser() {
         if(response.status === 200) {
             return response.json()
         }
-    //    return logout()
+       return logout()
     })
     .then(function (user) {
         return user
     })
     .catch(function() {
-        // logout()
+        logout()
     })
 }
 

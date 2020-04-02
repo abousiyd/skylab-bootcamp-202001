@@ -3,9 +3,7 @@ import searchCrypto from '../../logic/search-crypto'
 import Crypto from '../Crypto'
 import CryptoChart from '../Chart/'
 import TopBar from '../topBar/'
-
 import './CryptoInfo.sass'
-
 
 class CryptoInfo extends Component{
 

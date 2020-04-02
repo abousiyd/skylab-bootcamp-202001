@@ -6,12 +6,18 @@ CryptoState is a simple page to learn about crypto currencies and start to under
 
 ## Functional Description
 
-The main features that this application allows a user
+The main features that this application allows a #
+
+user
 
 login and register
+
 Search cryptocurrency
+
 Add to Favorites.
+
 Aee diagram of the cryptocurrency
+
 See news of the cryptocurrency
 
 

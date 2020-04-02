@@ -44,5 +44,5 @@ function getNews(crypto, lang, date) {
     })
 }
 
-export {getNews}
+export {getNews} // 
 export default getUserNews;

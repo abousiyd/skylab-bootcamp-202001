@@ -43,7 +43,7 @@ class Cryptos extends Component {
       try {
         retrieveUser()
         .then(user => {
-            this.setState({user})
+          if(user) this.setState({user})
           })
       }catch(error){
         
@@ -122,7 +122,7 @@ class Cryptos extends Component {
             {error && <p>{error}</p>}
             {!cryptos.length && <div className="donut"></div>}
 
-            {!!cryptos.length &&  <h1 className="title" id="title"> </h1>}
+            {!crypto && !!cryptos.length &&  <h1 className="title" id="title"> </h1>}
             
             {crypto && <Crypto cryptoInfo={crypto}/>}
           

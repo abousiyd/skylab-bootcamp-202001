@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import retrieveUser from '../../logic/retrive-user'
 import logout from '../../logic/logout'
-
-
 import './topBar.sass'
 
 class TopBar extends Component{
@@ -11,7 +9,7 @@ class TopBar extends Component{
 
     componentDidMount() {
         retrieveUser().then(user => {
-            this.setState({user})
+            if(user) this.setState({user})
           })
     }
             
