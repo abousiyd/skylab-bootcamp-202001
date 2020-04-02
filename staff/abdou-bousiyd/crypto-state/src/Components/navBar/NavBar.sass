@@ -17,9 +17,13 @@
     .nav-Search
         width: 250px
         display: flex
-        border-radius: 50px
+        border-radius: 25px
+        @media (max-width: 900px)
+            width: 50%
+
+        
         input 
-            border: 2px solid #077971
+            border: 2px solid #525252
             border-radius: 25px
             height: 35px
             padding: 15px
@@ -27,22 +31,33 @@
             color: #3D3D3C
             padding-right: 80px
             outline: none
+            @media (max-width: 900px)
+                padding: 15px
+                padding-right: 50px
         button 
             background-color: transparent
             border-color: transparent
-            font-size: 18px
-            color: #01A093
+            font-size: 15px
+            color: #525252
             position: relative
-            right: 90px
-            top: 1px
+            right: 60px
+            top: 0
             cursor: pointer
             outline: none
-
+            @media (max-width: 900px)
+                font-size: 15px
+                position: relative
+                margin-left: 15px
     .logo
         color: #ffffff
         text-transform:  uppercase
         letter-spacing: 5px
         font-size: 15px
+        @media (max-width: 900px)
+            font-size: 15px
+            letter-spacing: 1px
+            margin: 5px
+
 
     .navLinks
         z-index: 1
@@ -55,17 +70,20 @@
     .navLinks li 
         list-style: none
 
-    .navLinks a
+    .navLinks a, span
         color: #ffffff
         text-decoration: none
         letter-spacing: 3px
         font-weight: bold
         font-size: 14px
+        cursor: pointer
         
 
     .burger 
         display: none
         cursor: pointer
+        @media (max-width: 900px)
+            margin: 10px
        
     .burger div 
         width: 25px

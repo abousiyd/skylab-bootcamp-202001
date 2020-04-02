@@ -24,7 +24,7 @@ class State extends Component{
 
               const cryptosPrices = JSON.parse(msg.data)
               // console.log(cryptosPrices, 222)
-
+              // { bitcoin: 6000 }
               const keys = Object.keys(cryptosPrices)
 
               
@@ -64,7 +64,7 @@ class State extends Component{
       getUser = () => {//debugger
           retrieveUser()
           .then(user => {
-            console.log(user)
+            // console.log(user)
               this.setState({user})
             })
       }
@@ -79,7 +79,6 @@ class State extends Component{
                 <TopBar />
                 <div className="cryptos_state__list">
                   <div className="cryptos_state__list__options">
-                    <div>Rank</div>
                     <div>Name</div>
                     <div>Price</div>
                     <div>Change (24hs)</div>
@@ -99,7 +98,7 @@ export default State;
 // const users = [
 //   {id: 'a', name: 'victor', nota: 9},
 //   {id: 'b', name: 'abdel', nota: 10},
-//   {id: 'c', name: 'khalid', nota: 2}
+//   {id: 'c', name: 'marc', nota: 2}
 // ] 
 
 // const usersNewData = {

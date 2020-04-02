@@ -1,4 +1,5 @@
 import authenticateUser from './authenticate-user'
+import logout from './logout'
 
 // registrare un usuario y luego comprobare que me deja logear. y ahora lo estoy probando con usuario que ya existee
 // tengo que usar metodo beforeach
@@ -22,6 +23,6 @@ test('should fail on none password', async () => {
 
 test('should return ok on correct data', async () => {
     const result = await authenticateUser('a', 'a')
-    expect(result).toBe('ok')
-
+    expect(result.status).toBe('ok')
+    logout()
 });

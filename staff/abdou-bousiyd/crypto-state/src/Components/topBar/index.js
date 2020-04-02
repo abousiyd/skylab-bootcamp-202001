@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 import retrieveUser from '../../logic/retrive-user'
 import logout from '../../logic/logout'
 
@@ -36,30 +37,29 @@ class TopBar extends Component{
     
     render() {
 
-        const {state: {user: {username}}} = this
+        const {state: {user: {username}}, props: {history}} = this
 
         return(
             <nav>
-                <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"></link>
                 <div className="logo">
                     <h4>CRYPTO-STATE</h4>
                 </div>
 
                 <ul className="navLinks">
                     <li>
-                        <a href="#">Articles</a>
+                        <span onClick={() => history.push('/home')}>Home</span>
                     </li>
 
                     <li>
-                        <a href="#">Cryptos</a>
+                        <span onClick={() => history.push('/state')}>State</span>
                     </li>
 
                     <li>
-                        <a href="#">{username}</a>
+                        <span onClick={() => history.push('/news')}>News</span>
                     </li>
 
                     <li>
-                        <a href="#" onClick={logout}>Logout</a>
+                        <span className=""  onClick={logout}>Logout</span>
                     </li>
                 </ul>
 
@@ -73,4 +73,4 @@ class TopBar extends Component{
     }
 }
 
-export default TopBar;
+export default withRouter(TopBar);

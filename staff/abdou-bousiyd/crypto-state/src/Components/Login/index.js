@@ -1,50 +1,72 @@
-import React from 'react';
+import React, {Component} from 'react';
 import authenticateUser from '../../logic/authenticate-user'
+import Alert from '../Alert'
 import './login.sass';
 
-export default function (props){
+class Login extends Component {
+
+    state = {error: null}
     
-    const handleOnSubmit = (event) => {
+    handleOnSubmit = (event) => {
         event.preventDefault()
         
         const usernameValue = event.target.username.value
         const passwordValue = event.target.password.value
     
-     handleLogin(usernameValue, passwordValue)
+     this.handleLogin(usernameValue, passwordValue)
 
     }
 
-    const handleOnToRegister = (event) => {
+    handleOnToRegister = (event) => {
         event.preventDefault()
-        console.log(props)
-        props.history.push('/register')
+        console.log(this.props)
+        this.props.history.push('/register')
     }
 
-    const handleLogin = (email, password) => {
+    handleLogin = (email, password) => {
         authenticateUser(email, password)
         .then(function( response ){
-            if(response === 'ok') {
-                props.history.push('/home')
+            if(response.status === 'ok') {
+                this.props.history.push('/state')
             }else{
-                console.log(response.error)
+                const { error } = response;
+                if (error) {
+                    this.setState({error})
+
+                    setTimeout(() => {
+                    this.setState({error: null})
+
+                    }, 5000)
+                }
             }
-        })
+        }.bind(this))
     }
     
-    return <form className="login" onSubmit={handleOnSubmit}>
-        <h2>ACCOUNT LOGIN</h2>
+    render() {
 
-        {/* <label>Email</label> */}
-        <input type="text" name="username" placeholder="username" />
+        const {state: {error}, handleOnToRegister, handleOnSubmit} = this
 
-        {/* <label>Password</label> */}
-        <input type="password" name="password" placeholder="password" />
+        return <div className="login-container">
+            <form className="login" onSubmit={handleOnSubmit}>
+                <h2>ACCOUNT LOGIN</h2>
 
-        <button >Login</button>
+                {error && <Alert message={error} />}
 
-        <a href="" onClick={handleOnToRegister}>Register</a>
 
-    </form>
+                {/* <label>Email</label> */}
+               <input type="text" name="username" placeholder="username" />
+
+                {/* <label>Password</label> */}
+                <input type="password" name="password" placeholder="password" />
+
+                <button >Login</button>
+
+                <a href="" onClick={handleOnToRegister}>Register</a>
+
+            </form>
+        </div>
+    }
+
 }
 
-// export default Login;
+export default Login;

@@ -2,7 +2,9 @@ import retrieveUser from './retrive-user'
 
 
 function getUserNews(lang, date){
-    return retrieveUser().then((user) => {
+    
+    return retrieveUser()
+    .then((user) => {//debugger
         const {favs = []} = user
         
         const allUserNews = favs.map(fav => {
@@ -10,7 +12,8 @@ function getUserNews(lang, date){
         })
 
 
-        return Promise.all(allUserNews).then(articles => {
+        return Promise.all(allUserNews)
+        .then(articles => {
             return favs.map((fav, i) => {
                 console.log(fav, i)
                 return {
@@ -41,4 +44,5 @@ function getNews(crypto, lang, date) {
     })
 }
 
+export {getNews}
 export default getUserNews;

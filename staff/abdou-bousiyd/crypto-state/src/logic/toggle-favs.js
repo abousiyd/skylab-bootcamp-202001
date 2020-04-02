@@ -16,7 +16,6 @@ function toggleFavs(symbol) {
         headers: { 'Authorization': `Bearer ${token}` }
     })
 
-
     .then( function(response) {
         if(response.status === 200) {
             return response.json()

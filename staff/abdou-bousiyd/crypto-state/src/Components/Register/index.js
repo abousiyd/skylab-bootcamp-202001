@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import register from '../../logic/register'
 import './register.sass';
+import Alert from '../Alert'
 
-function Register(props) {
 
-    const handleOnSubmit = (event) => {
+class Register extends Component {
+
+    state = {error: null}
+
+    handleOnSubmit = (event) => {
         event.preventDefault()
         
         const name = event.target.name.value
@@ -12,38 +16,53 @@ function Register(props) {
         const username = event.target.username.value
         const password = event.target.password.value
 
-        handleRegister(name, surname, username, password)
+        this.handleRegister(name, surname, username, password)
     }
 
-    const handleOnToLogin = (event) => {
+    handleOnToLogin = (event) => {
         event.preventDefault()
-        console.log(props)
-        props.history.push('/')
+        console.log(this.props)
+        this.props.history.push('/login')
     }
 
-    const handleRegister = (name, surname, username, password) => {
+    handleRegister = (name, surname, username, password) => {
         register(name, surname, username, password)
         .then(function( response ){
             if(response === 'ok') {
-                props.history.push('/')
+                this.props.history.push('/login')
             }else{
-                console.log(response.error, 'register error')
+                const { error } = response;
+                if (error) {
+                    this.setState({error})
+
+                    setTimeout(() => {
+                    this.setState({error: null})
+
+                    }, 5000)
+                }
             }
-        })
+        }.bind(this))
     }
 
-    return <form className="register" onSubmit={handleOnSubmit}>
-        <h2>Sign-up</h2>
-        {/* <div className="register__inputs">
-            <label>NAME</label> */}
-            <input type="text" name="name" placeholder="name" />
-            <input type="text" name="surname" placeholder="surname" />
-            <input type="text" name="username" placeholder="username" />
-            <input type="password" name="password" placeholder="password" />
-        {/* </div> */}
-        <button>Register</button>
-        <a href="" onClick={handleOnToLogin}>Login</a>
-    </form>
+    render() {
+        const {state: {error}, handleOnToLogin, handleOnSubmit} = this
+
+        return <div className="register-container">
+        <form className="register" onSubmit={handleOnSubmit}>
+        {error && <Alert message={error} />}
+
+            <h2>Sign-up</h2>
+                <input type="text" name="name" placeholder="name" />
+                <input type="text" name="surname" placeholder="surname" />
+                <input type="text" name="username" placeholder="username" />
+                <input type="password" name="password" placeholder="password" />
+            {/* </div> */}
+            <button>Register</button>
+            <a href="" onClick={handleOnToLogin}>Login</a>
+        </form>
+    </div>
+    }
+
 }
 
 export default Register;

@@ -1,3 +1,15 @@
+# Crypto-State
+
+CryptoState is a simple page to learn about crypto currencies and start to understand some of the fundamental concepts and follow the state and news of your cryptos that interest you.
+
+## Use Cases Diagram
+
+
+## Screenshoot
+
+![](https://images.pexels.com/photos/3663040/pexels-photo-3663040.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

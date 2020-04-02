@@ -9,7 +9,7 @@ function Carousel(props) {
             <section className="banner">
                 <div className="banner__content">
                     {children}
-                    <p id="text"></p>
+                    <p className="banner__content__title" id="text"></p>
                 </div>
             </section>
         )

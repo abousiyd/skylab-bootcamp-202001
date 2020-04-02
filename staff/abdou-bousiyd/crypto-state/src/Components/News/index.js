@@ -14,7 +14,8 @@ class News extends Component {
 
   handleGetUserNews = () => {
     const {state: { lang, date }} = this;
-    getUserNews(lang, date).then(
+    getUserNews(lang, date)
+    .then(
       function(news) {
         console.log(news);
         this.setState({ news });
@@ -25,7 +26,7 @@ class News extends Component {
   }
 
   setLang = (lang) => {
-    this.setState({lang}, this.handleGetUserNews)
+    this.setState({lang}, () => this.handleGetUserNews)
   }
 
   setDate = (event) => {

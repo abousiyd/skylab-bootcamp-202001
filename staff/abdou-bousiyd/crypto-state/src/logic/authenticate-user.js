@@ -1,3 +1,10 @@
+
+/**
+ * Autenticate user
+ * @param {string} username
+ * @param {string} password
+ * @returns {promise}
+ */
 function authenticateUser(username, password) {
 
     if(!username) throw Error('username should be defined')
@@ -5,7 +12,9 @@ function authenticateUser(username, password) {
 
     // una fuctona que llama ase misnma
     return ( async () => {
-        const response = await fetch('https://skylabcoders.herokuapp.com/api/v2/users/auth', {
+
+        try {
+            const response = await fetch('https://skylabcoders.herokuapp.com/api/v2/users/auth', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -15,25 +24,39 @@ function authenticateUser(username, password) {
         if (status === 200) {
             const { token } = await response.json()
             localStorage.setItem("token", token);
-            return 'ok'
-        }
-
-        if (status >= 400 && status < 500) {
-            const { error } = await response.json()
-
-            if (status === 409) {
-                return {
-                    error: error.message
-                }
-                // throw new error('credenciales incorrectas')
+            return {
+                status: 'ok',
+                token
             }
+        }
 
-            // throw new Error(error)
+
+
+        if (status === 401) {
+            return await response.json()
         }
-        return {
-            error: 'server error'
-        }
+
+        // if (status >= 400 && status < 500) {
+        //     const { error } =  response.json()
+        //         if (error) {
+        //             return {
+        //                 error: error.message
+        //             }
+        //         }
+
+        //         // throw new error('credenciales incorrectas')
+
+        //     // throw new Error(error)
+        // }
+        // return {
+        //     error: 'server error'
+        // }
         // throw new Error('server error')
+        } catch(error) {
+            throw new Error(error)
+            // return error
+        }
+
     })()
 }
 export default authenticateUser;

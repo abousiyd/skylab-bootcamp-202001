@@ -1,7 +1,6 @@
-body 
-    background-color: #F7F8F0
-    font-family: Arial, Helvetica, sans-serif
-
+.login-container 
+    display: flex
+    justify-content: center
 .login 
     background-color: #FFFFFF
     display: flex
@@ -11,8 +10,10 @@ body
     width: 450px
     margin-top: 100px
     border-radius: 10px
-    position: relative
     box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52)
+    @media (max-width: 900px)
+        width: 300px
+        margin-left: 8%
 
     h2 
         padding: 25px
@@ -26,6 +27,8 @@ body
         border: none
         background: #f1f1f1
         transition: .2s ease-in
+        @media (max-width: 900px)
+            width: 75%
 
     input[type=text]:focus, input[type=password]:focus 
         background-color: #ddd

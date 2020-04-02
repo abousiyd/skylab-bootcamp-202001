@@ -10,9 +10,7 @@ import './CryptoInfo.sass'
 class CryptoInfo extends Component{
 
     state = { crypto: null, error: null }
-    // const {  }
-    // console.log(props.match.params.crypto , 888888)
-
+    
     componentDidMount() {
         searchCrypto(this.props.match.params.crypto)
         .then(function(crypto){
@@ -34,7 +32,6 @@ class CryptoInfo extends Component{
             state: {crypto, error},
             props: {match: {params: {crypto: cryptoQuery}}}
           } = this
-        // console.log(cryptoQuery, 4847576575676576)
 
         return(
             <div className="crypto_info">

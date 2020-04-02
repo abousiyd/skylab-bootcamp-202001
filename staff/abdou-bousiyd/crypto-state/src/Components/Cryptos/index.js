@@ -3,6 +3,7 @@ import getCryptos from '../../logic/get-cryptos'
 import SearchCrypto from '../navBar/'
 import Crypto from '../Crypto'
 import searchCrypto from '../../logic/search-crypto'
+import retrieveUser from '../../logic/retrive-user'
 import Carousel from '../Carousel'
 import './cryptos.sass'
 
@@ -17,22 +18,36 @@ class Cryptos extends Component {
         ethereum: 0,
         tether: 0
       }, 
-    error: null 
+    error: null ,
+    user: {}
   }
 
     componentDidMount(){ //debugger
       const pricesWs = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum,tether')
 
-      pricesWs.onmessage = (msg) => {
+      pricesWs.onmessage = (msg) => {//debugger
+        // console.log(msg.data, 666)
           const cryptoPrices = JSON.parse(msg.data)
-          this.setState({cryptoPrices: {
-            ...this.state.cryptoPrices,
-            ...cryptoPrices
-          }})
+            this.setState({cryptoPrices: {
+              ...this.state.cryptoPrices,
+              ...cryptoPrices
+            }})
       }
 
       this.callCryptos()
       this.typeEffect()
+      this.getUser()
+    }
+
+    getUser = () => {
+      try {
+        retrieveUser()
+        .then(user => {
+            this.setState({user})
+          })
+      }catch(error){
+        
+      }
     }
 
     getRandomCrypto = () => {
@@ -47,7 +62,7 @@ class Cryptos extends Component {
       .then((allCryptos) => {  //50 cryptos
         
         this.setState({allCryptos})
-        setInterval(this.getRandomCrypto, 5000)
+        setInterval(this.getRandomCrypto, 7000)
 
         // this.moveScroll()
       })
@@ -78,7 +93,6 @@ class Cryptos extends Component {
     typeEffect = () => {
       var i = 0;
       var txt = 'Bienvenidos a crypto-state.';
-      var speed = 50;
   
       function typeWriter() {
           if (i < txt.length) {
@@ -87,36 +101,34 @@ class Cryptos extends Component {
                 element.innerHTML += txt.charAt(i);
                 i++;
               }
-              setTimeout(typeWriter, speed);
+              setTimeout(typeWriter, 70);
           }
       }
       typeWriter()
   }
 
   render() {
-    //3ndi history
+    // history
     const {
-      state: {cryptos, crypto, error, cryptoPrices: {bitcoin,ethereum,tether}},
+      state: {cryptos, crypto, error, user, cryptoPrices: {bitcoin,ethereum,tether}},
       handleSearch
     } = this
     
-    // console.log(this.cryptos)
     return (
       <div className="cryptos_container">
-          <SearchCrypto handleSearch={handleSearch}/>
+          <SearchCrypto handleSearch={handleSearch} user={user}/>
           
           <Carousel>
             {error && <p>{error}</p>}
             {!cryptos.length && <div className="donut"></div>}
 
-            {!!cryptos.length &&  <h1 id="title"> </h1>}
+            {!!cryptos.length &&  <h1 className="title" id="title"> </h1>}
             
             {crypto && <Crypto cryptoInfo={crypto}/>}
           
-            <div className="cryptos_container__cryptos" id="cryptos">
-              {!!cryptos.length && cryptos.map(crypto => <Crypto  cryptoInfo={crypto}/>)}
-            </div>
-
+              <div className="cryptos_container__cryptos" id="cryptos">
+                {!!cryptos.length && cryptos.map(crypto => <Crypto  cryptoInfo={crypto}/>)}
+              </div>
           </Carousel>
         
           <div className='cryptos_container__socket'>

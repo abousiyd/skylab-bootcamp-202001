@@ -9,6 +9,7 @@ function register(name, surname, username, password) {
     // una fuctona que llama ase misnma
 
     return ( async () => {
+        try {
         const response = await fetch('https://skylabcoders.herokuapp.com/api/v2/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -20,22 +21,19 @@ function register(name, surname, username, password) {
             return 'ok'
         }
 
-        if (status >= 400 && status < 500) {
-            const { error } = await response.json()
 
-            if (status === 409) {
-                return {
-                    error: error.message
-                }
-                // throw new error('credenciales incorrectas')
-            }
+        if (status === 401 || status === 409) {
+            return await response.json()
+        }
 
-            // throw new Error(error)
-        }
-        return {
-            error: 'server error'
-        }
+        // return {
+        //     error: 'server error'
+        // }
         // throw new Error('server error')
+    } catch(error) {
+        throw new Error(error)
+        // return error
+    }
     })()
 }
 export default register;

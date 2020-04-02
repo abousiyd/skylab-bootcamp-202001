@@ -34,9 +34,9 @@ test('should fail on none password', async () => {
 });
 
 test('should register user', async () => {
-    var name = 'name-' + Math.random()
-    var surname = 'surname-' + Math.random()
-    var username = 'username-' + Math.random()
+    let name = 'name-' + Math.random()
+    let surname = 'surname-' + Math.random()
+    let username = 'username-' + Math.random()
 
     const result = await register(name, surname, username, 'abcd')
     expect(result).toMatch('ok')
