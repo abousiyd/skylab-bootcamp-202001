@@ -1,5 +1,5 @@
 function createProfile(selector, props) {
-    
+    console.log(selector, props, 555555)
     var profile = document.querySelector(selector) 
 
     var inputs = profile.querySelectorAll('input')
