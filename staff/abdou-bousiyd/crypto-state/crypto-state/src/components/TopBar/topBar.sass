@@ -1,0 +1,89 @@
+ 
+.top-bar
+    display: flex
+    justify-content: space-around
+    align-items: center
+    background-color: #272724
+    font-family: 'Poppins', sans-serif
+    width: 100%
+    height: 70px
+    &__logo
+        color: #ffffff
+        text-transform:  uppercase
+        letter-spacing: 5px
+        font-size: 20px
+        @media screen and ( max-width: 768px )
+            font-size: 12px
+            letter-spacing: 1px
+    &__links
+        z-index: 1
+        display: flex
+        justify-content: space-around
+        width: 30%
+        &__item 
+            list-style: none
+            background-color: redx
+            color: #ffffff
+            text-decoration: none
+            letter-spacing: 3px
+            font-weight: bold
+            font-size: 14px
+            cursor: pointer
+    
+    &__burger 
+        display: none
+        cursor: pointer
+        &--line1
+            transform: rotate(-45deg) translate(-5px,6px)
+        &--line2
+            opacity: 0
+        &--line3
+            transform: rotate(45deg) translate(-5px,-6px)
+        &__item
+            width: 25px
+            height: 3px
+            background-color: #ffffff
+            margin: 5px
+            transition: all 0.3s ease
+
+@media screen and ( max-width: 1024px )
+    .top-bar__links
+        width: 60%
+
+@media screen and ( max-width: 768px )
+    .top-bar
+        &__links
+            position: absolute
+            right: 0px
+            height: 92vh
+            top: 50px
+            background-color: #272724
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 50%
+            transform: translateX(100%)
+            transition: transform 0.5s ease-in
+            &__item
+                opacity: 0
+        
+        &__burger 
+            display: block !important
+            &--toggle &--line1
+                transform: rotate(-45deg) translate(-5px,6px)
+            &--toggle &--line2
+                opacity: 0
+            &--toggle &--line3
+                transform: rotate(45deg) translate(-5px,-6px)
+
+        .nav-active 
+            transform: translateX(0%)
+
+        @keyframes navLinksFade 
+            from 
+                opacity: 0
+                transform: translateX(50%)
+            to 
+                opacity: 1
+                transform: translateX(0%)
+        
