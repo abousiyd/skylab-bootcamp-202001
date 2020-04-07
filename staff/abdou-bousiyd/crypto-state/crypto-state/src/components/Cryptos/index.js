@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getCryptos from '../../logic/get-cryptos'
-import SearchCrypto from '../navBar/'
+import SearchCrypto from '../NavBar/'
 import Crypto from '../Crypto'
 import searchCrypto from '../../logic/search-crypto'
 import retrieveUser from '../../logic/retrive-user'

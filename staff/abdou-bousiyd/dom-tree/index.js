@@ -1,4 +1,3 @@
-
 function html(elements) {
     var code = '';
 

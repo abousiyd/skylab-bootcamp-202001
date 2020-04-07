@@ -1,6 +1,5 @@
 function getUserNews(lang, favs, date) {
 
-    // apiKey=6536e5e78af745e39a17546246240a27
 
     if(!lang) throw Error('lang should be defined')
     if(!(favs instanceof Array)) throw Error('favs should be an array')

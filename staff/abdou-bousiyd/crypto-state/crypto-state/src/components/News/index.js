@@ -11,7 +11,8 @@ class News extends Component {
   state = { news: [], error: null, user: {}, lang: 'en', date: null };
 
   componentDidMount() {
-    retrieveUser().then(user => {
+    retrieveUser()
+    .then(user => {
       if (user) {
         this.setState({user}, () => this.handleGetUserNews())
       }

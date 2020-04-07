@@ -10,7 +10,7 @@ function PrivateRoute(props) {
             if (this.token) {
                 return <Component {...componentProps}/>
             }
-            return <Redirect to='/login' />
+            return <Redirect to='/home' />
         }} />
     )
 }
