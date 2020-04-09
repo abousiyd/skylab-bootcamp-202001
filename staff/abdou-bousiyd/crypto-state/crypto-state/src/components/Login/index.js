@@ -24,10 +24,8 @@ class Login extends Component {
     handleLogin = (email, password) => {
         try{
             authenticateUser(email, password)
-            .then(status => {
-                if(status === 200) {
+            .then(() => {
                     this.props.history.push('/state')
-                }
             }).catch(error => {
                 this.setState({alert: <Alert error message={error.message} />})
                 setTimeout( () => {

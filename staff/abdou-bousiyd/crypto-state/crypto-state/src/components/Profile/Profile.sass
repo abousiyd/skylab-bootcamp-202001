@@ -19,8 +19,27 @@
             width: 300px
             height: 550px
             margin-bottom: 40px
-        &__title 
-            // padding: 15px
+        &__favs 
+            display: flex
+            position: relative
+            &__item
+                display: flex
+                align-items: center
+                justify-content: center
+                flex-direction: row
+                background-color: #2e2929
+                color: white
+                height: 40px
+                cursor: pointer
+                font-size: 15px
+                font-weight: bold
+                margin: 25px
+                padding: 3px
+                &__close 
+                    position: absolute
+                    color: crimson
+                    top: 0
+                    cursor: pointer
         &__input
             width: 80%
             padding: 15px

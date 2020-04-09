@@ -24,7 +24,7 @@ function authenticateUser(username, password) {
         if (status === 200) {
             const { token } = await response.json()
             this.token = token;
-            return status
+            return
         }
 
         if (status === 401) {

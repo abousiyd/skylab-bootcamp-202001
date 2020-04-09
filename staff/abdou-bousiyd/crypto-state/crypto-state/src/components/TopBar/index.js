@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-import retrieveUser from '../../logic/retrive-user'
 import context from '../../logic/context'
 import './topBar.sass'
 
 class TopBar extends Component{
-    state = { user: {}}
 
-    componentDidMount() {
-        retrieveUser().then(user => {
-            if(user) this.setState({user})
-          })
-    }
             
     handleClick = () => {
         const burger = document.querySelector('.top-bar__burger')
         const nav = document.querySelector('.top-bar__links')
         const navButtons = document.querySelectorAll('.top-bar__links li')
 
-        // console.log('this is:', this);
         nav.classList.toggle('nav-active')
 
         navButtons.forEach( (link, index) => {
@@ -36,7 +28,7 @@ class TopBar extends Component{
     
     render() {
 
-        const {state: {user: {username}}, props: {history}} = this
+        const {props: {history}} = this
 
         return(
             <nav className="top-bar">

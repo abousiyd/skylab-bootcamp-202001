@@ -96,30 +96,3 @@ class State extends Component{
 }
 
 export default State;
-
-
-// const users = [
-//   {id: 'a', name: 'victor', nota: 9},
-//   {id: 'b', name: 'abdel', nota: 10},
-//   {id: 'c', name: 'marc', nota: 2}
-// ] 
-
-// const usersNewData = {
-//   a: 5,
-//   c: 8
-// }
-
-// const keys = Object.keys(usersNewData)
-
-// users.forEach(user => {
-//   keys.forEach(key => {
-//       console.log(user.id, key)
-//       if (user.id === key) {
-//          user.nota = usersNewData[key]
-//       }
-//   })
-// })
-
-// console.log(users)
-
-// crypto.classStyle = (cryptosPrices[key] > crypto.priceUsd) ? 'green' : 'red'

@@ -18,6 +18,9 @@ function getUserNews(lang, favs, date) {
                 return []
             }
         })
+        .catch(function(error) {
+            throw new Error(error.message)
+        })
     })
     
     return Promise.all(allUserNews)
@@ -28,6 +31,9 @@ function getUserNews(lang, favs, date) {
                 articles: articles[i]
             }
         })
+    })
+    .catch(function(error) {
+        throw new Error(error.message)
     })
 }
 

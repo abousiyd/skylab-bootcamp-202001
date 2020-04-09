@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getCryptos from '../../logic/get-cryptos'
-import SearchCrypto from '../navBar/'
+import SearchCrypto from '../NavBar/'
 import Crypto from '../Crypto'
 import searchCrypto from '../../logic/search-crypto'
 import retrieveUser from '../../logic/retrive-user'
@@ -25,8 +25,7 @@ class Cryptos extends Component {
     componentDidMount(){ //debugger
       const pricesWs = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum,tether')
 
-      pricesWs.onmessage = (msg) => {//debugger
-        // console.log(msg.data)
+      pricesWs.onmessage = (msg) => {
           const cryptoPrices = JSON.parse(msg.data)
             this.setState({cryptoPrices: {
               ...this.state.cryptoPrices,
@@ -34,7 +33,13 @@ class Cryptos extends Component {
             }})
       }
 
-      this.callCryptos()
+      document.addEventListener('mouseover', () => { 
+        if(!this.state.cryptos.length){
+          this.callCryptos()
+        }
+      });
+
+      // this.callCryptos()
       this.typeEffect()
       this.getUser()
     }
@@ -60,10 +65,10 @@ class Cryptos extends Component {
     callCryptos = () => {//debugger
       getCryptos()
       .then((allCryptos) => {  
-        
+        console.log(allCryptos)
         this.setState({allCryptos})
+        this.getRandomCrypto()
         setInterval(this.getRandomCrypto, 7000)
-
       })
     }
 

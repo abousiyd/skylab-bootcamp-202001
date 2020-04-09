@@ -10,7 +10,7 @@ function getCryptos() {
         return response.data
     })
     .catch(function(error) {
-        console.log(error)
+        throw new Error(error.message)
     })
 }
 

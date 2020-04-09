@@ -27,10 +27,8 @@ class Register extends Component {
     handleRegister = (name, surname, username, password) => {
         try{
             register(name, surname, username, password)
-            .then(response => {
-                if(response === 'ok') {
+            .then(()=> {
                     this.props.history.push('/login')
-                }
             }).catch(error => {
                     this.setState({alert: <Alert error message={error.message} />})
 

@@ -15,10 +15,6 @@ function register(name, surname, username, password) {
         })
         const { status } = response
 
-        if (status === 201) {
-            return 'ok'
-        }
-
 
         if (status === 401 || status === 409) {
             const {error} = await response.json()
@@ -28,7 +24,6 @@ function register(name, surname, username, password) {
 
     } catch(error) {
         throw new Error(error)
-        // return error
     }
     })()
 }

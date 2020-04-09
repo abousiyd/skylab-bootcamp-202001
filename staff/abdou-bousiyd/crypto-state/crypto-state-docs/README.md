@@ -14,7 +14,7 @@ The main features that this application allows a user
 
 - Search cryptocurrency.
 
-- Add to Favorites.
+- Subscribe.
 
 - Edit profile.
 

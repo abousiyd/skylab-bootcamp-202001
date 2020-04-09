@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import updateProfile from '../../logic/update-profile'
+import toggleFavs from '../../logic/toggle-favs'
 import retriveUser from '../../logic/retrive-user'
 import TopBar from '../TopBar'
 import Alert from '../Alert'
@@ -11,6 +12,10 @@ class Profile extends Component {
     state = {user: {}, alert: null}
 
     componentDidMount = () => {
+        this.getUser()
+    }
+
+    getUser = () => {
         retriveUser()
         .then(user => {
             if(user) {
@@ -57,14 +62,35 @@ class Profile extends Component {
         }
     }
 
+    removeFavorite = (fav, favs) => {
+        toggleFavs(fav, favs).then(() => {
+            this.getUser();
+            this.setState({alert: <Alert message='Removed successfully' />})
+    
+                setTimeout( () => {
+                    this.setState({alert: null})
+                }, 4000 )
+        })
+    }
+
 
     
     render(){
-        const {handleOnSubmit, state: {user: {name, surname, username}, alert}} = this
+        const {handleOnSubmit, removeFavorite, state: {user: {name, surname, username, favs = []}, alert}} = this
         return(<>
                 <TopBar />
-                {alert && alert}
+                
                 <form className="form-container" onSubmit={handleOnSubmit}>
+                {alert && alert}
+
+                <div className="form-container__form__favs">
+                            {favs.map(fav => {
+                                return <div className="form-container__form__favs__item">
+                                    {fav}
+                                    <span className="form-container__form__favs__item__close material-icons" onClick={() => removeFavorite(fav, favs)}> clear </span>
+                                    </div>
+                            })}
+                        </div>
                     <div className="form-container__form">
                         < h3 className="form-container__form__title" > Profile</h3 >
                         <input className="form-container__form__input" type="text" name="name" defaultValue={name}/>
