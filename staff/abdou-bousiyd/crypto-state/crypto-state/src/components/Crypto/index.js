@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 import './crypto.sass';
 
 
-function Crypto(props){//debugger
+function Crypto(props){
     
     const {cryptoInfo: {priceUsd, name, changePercent24Hr, symbol, id}, full} = props
 

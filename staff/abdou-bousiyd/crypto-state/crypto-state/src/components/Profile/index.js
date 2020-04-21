@@ -42,7 +42,6 @@ class Profile extends Component {
             .then( response =>{
                 if(response === 'ok') {
                     this.setState({alert: <Alert message='User updated successfully' />})
-    
                     setTimeout( () => {
                         this.setState({alert: null})
                     }, 4000 )
@@ -63,25 +62,25 @@ class Profile extends Component {
     }
 
     removeFavorite = (fav, favs) => {
-        toggleFavs(fav, favs).then(() => {
+        toggleFavs(fav, favs)
+        .then(() => {
             this.getUser();
             this.setState({alert: <Alert message='Removed successfully' />})
-    
-                setTimeout( () => {
-                    this.setState({alert: null})
-                }, 4000 )
+            setTimeout( () => {
+                this.setState({alert: null})
+            }, 4000 )
         })
     }
-
-
-    
+ 
     render(){
         const {handleOnSubmit, removeFavorite, state: {user: {name, surname, username, favs = []}, alert}} = this
         return(<>
                 <TopBar />
                 
                 <form className="form-container" onSubmit={handleOnSubmit}>
-                {alert && alert}
+                    <div className="form-container__alert">
+                        {alert && alert}
+                    </div>
 
                 <div className="form-container__form__favs">
                             {favs.map(fav => {

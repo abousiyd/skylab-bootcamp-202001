@@ -11,13 +11,11 @@ class State extends Component{
 
     componentDidMount(){
       this.getUser()
-
       getState()
       .then(function(cryptos){
         if(!cryptos){
           return
         }
-
         this.setState({cryptos})
 
         const cryptoNames = cryptos.map(crypto => crypto.id)
@@ -29,9 +27,8 @@ class State extends Component{
             const cryptosPrices = JSON.parse(msg.data)
 
             const keys = Object.keys(cryptosPrices)
-
-            
-            cryptos.forEach(crypto => {//debugger
+  
+            cryptos.forEach(crypto => {
               keys.forEach(key => {
 
                 if(key === crypto.id) {
@@ -41,9 +38,7 @@ class State extends Component{
                   } else {
                     crypto.classStyle = 'state-container--red'
                   }
-
                   crypto.priceUsd = cryptosPrices[key]
-
                 } else {
                   crypto.classStyle = ''
                 }
@@ -78,8 +73,9 @@ class State extends Component{
             state: {cryptos, user, error}, handleToggleFavs} = this
 
           return( 
+            <>
+            <TopBar />
               <div className="cryptos-state"> 
-                <TopBar />
                 <div className="cryptos-state__list">
                   <div className="cryptos-state__list__options">
                     <div>Name</div>
@@ -87,10 +83,11 @@ class State extends Component{
                     <div>Change (24hs)</div>
                     <div>Actions</div>
                   </div>
-                  {cryptos.length && cryptos.map(crypto => <CryproItem user={user} handleToggleFavs={handleToggleFavs} cryptoInfo={crypto}/>)}
+                  {!!cryptos.length && cryptos.map(crypto => <CryproItem user={user} handleToggleFavs={handleToggleFavs} cryptoInfo={crypto}/>)}
                 </div>
               </div> 
-          )
+              </>
+            )
       }
 
 }

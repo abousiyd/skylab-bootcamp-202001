@@ -15,8 +15,7 @@ function SearchCrypto({ handleSearch, history, user: { username } }) {
       if (link.style.animation) {
         link.style.animation = "";
       } else {
-        link.style.animation = `navLinksFade 0.5s ease forwards ${index / 7 +
-          0.5}s`;
+        link.style.animation = `navLinksFade 0.5s ease forwards ${index / 7 + 0.5}s`;
       }
     });
     burger.classList.toggle('top-bar__burger__item--toggle')
@@ -30,7 +29,6 @@ function SearchCrypto({ handleSearch, history, user: { username } }) {
     if (query === "") return;
 
     handleSearch(query);
-    // console.log(query)
   };
 
   return (

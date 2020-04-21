@@ -3,7 +3,10 @@
     background-color: #2e2929
     width: 100%
     overflow: hidden
-              
+    &__home
+        @media (max-width: 900px)
+            margin-top: 55px
+   
     &__donut 
         display: inline-block
         border: 2px solid rgba(0, 0, 0, 0.1)
@@ -17,17 +20,31 @@
                 transform: rotate(0deg)
             100% 
                 transform: rotate(360deg)
+        @media (max-width: 900px)
+            width: 30px
+            height: 30px
 
     &__cryptos
         display: flex
         justify-content: center
-        margin: 0 20px
         width: 100%
-        overflow-y: hidden
+        &::-webkit-scrollbar
+            -webkit-appearance: none
+            height: 7px
+            border-radius: 5px
+        &:horizontal
+            height: 5px
+        &::-webkit-scrollbar-thumb
+            background-color: #2c2c2c
+            border-radius: 5px
+        &::-webkit-scrollbar-track
+            width: 5px
         @media (max-width: 900px)
-            width: 95%
-            // height: 45%
+            display: flex
+            justify-content: space-between
+            width: 93%
             overflow-y: hidden
+            margin: 0px 0px 150px
 
 
     &__socket 
@@ -37,20 +54,33 @@
         align-items: center
         justify-content: space-around
         bottom: 0
+        @media (max-width: 900px)
+            width: 380px
+            height: 150px
         &__img 
             width: 50px
             height: 50px
         @media (max-width: 900px)
-            display: none
-            
+            width: 380px
+            height: 125px
+            margin-top: 40px
+        &__text
+            @media (max-width: 900px)
+                margin-top: 5px
+                margin-right: 5px
+                font-size: 15px
+ 
         &__crypto
+            height: 130px
             color: white
             font-weight: bold
             display: flex
             flex-direction: column
             align-items: center
             @media (max-width: 900px)
-                width: 800%
+                width: 120px
+                height: 100px
+                margin-bottom: 5px
             &__text 
                 padding: 20px
                 @media (max-width: 900px)

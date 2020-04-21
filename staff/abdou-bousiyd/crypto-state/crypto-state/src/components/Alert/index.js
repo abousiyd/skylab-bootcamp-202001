@@ -10,7 +10,7 @@ function Alert(props) {
     if(error){
         icon = "warning"
     }
-    return <div className="alert">
+    return <div className="alert ">
         <span className="material-icons">{icon}</span>
         <span className="alert-text">{message}</span>
     </div>

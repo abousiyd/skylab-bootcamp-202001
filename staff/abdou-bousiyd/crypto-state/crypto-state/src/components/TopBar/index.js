@@ -4,8 +4,7 @@ import context from '../../logic/context'
 import './topBar.sass'
 
 class TopBar extends Component{
-
-            
+   
     handleClick = () => {
         const burger = document.querySelector('.top-bar__burger')
         const nav = document.querySelector('.top-bar__links')
@@ -25,10 +24,18 @@ class TopBar extends Component{
 
     }
 
+    isTheActiveRoute = (route) => {
+        const {props: {history: {location:{pathname}}}} = this
+        if (route === pathname) {
+            return true
+        } 
+    }
+
     
     render() {
 
-        const {props: {history}} = this
+        const {props: {history},  isTheActiveRoute, handleClick} = this
+
 
         return(
             <nav className="top-bar">
@@ -38,15 +45,33 @@ class TopBar extends Component{
 
                 <ul className="top-bar__links">
 
-                    <li className="top-bar__links__item"  onClick={() => history.push('/state')}>
+                    <li className={`top-bar__links__item ${isTheActiveRoute('/state') && 'top-bar__links__item--blue'}`}  onClick={() => {
+                        if (isTheActiveRoute('/state')) {
+                            handleClick()
+                        } else {
+                            history.push('/state')
+                        }
+                    }}>
                         State
                     </li>
 
-                    <li className="top-bar__links__item" onClick={() => history.push('/news')}>
+                    <li className={`top-bar__links__item ${isTheActiveRoute('/news') && 'top-bar__links__item--blue'}`}  onClick={() => {
+                        if (isTheActiveRoute('/news')) {
+                            handleClick()
+                        } else {
+                            history.push('/news')
+                        }
+                    }}>
                         News
                     </li>
 
-                    <li className="top-bar__links__item" onClick={() => history.push('/profile')}>
+                    <li className={`top-bar__links__item ${isTheActiveRoute('/profile') && 'top-bar__links__item--blue'}`}  onClick={() => {
+                        if (isTheActiveRoute('/profile')) {
+                            handleClick()
+                        } else {
+                            history.push('/profile')
+                        }
+                    }}>
                         Profile
                     </li>
 

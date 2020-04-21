@@ -5,23 +5,20 @@ import moment from 'moment'
 import './chart.sass'
 
 class CryptoChart extends Component {
-  state = { crypto: null, error: null, data: null };
-  // const {  }
-  // console.log(props.match.params.crypto)
+  state = { crypto: null, error: null, data: null, graph: 'h12' };
+
 
   componentDidMount() {
     const {cryptoQuery} = this.props
+    const {state: { graph }} = this;
 
-    cryptoHistory(cryptoQuery).then(
-      function(crypto) {
+    cryptoHistory(cryptoQuery, graph)
+    .then(function(crypto) {
         if (crypto) {
           const labels = []
           const prices = []
 
             crypto.forEach((_cryptoInfo) => {
-
-            // var test = moment.duration(_cryptoInfo.time); 
-            // var y = tempTime.hours() + test.minutes();
           
               const time = moment.unix(_cryptoInfo.time/1000).format("DD MMM")
 
@@ -68,32 +65,45 @@ class CryptoChart extends Component {
     );
   }
 
+  setGraph = (graph) => {
+    this.setState({graph}, () => this.componentDidMount())
+  }
+
   render() {
-    const {
-      state: {data, error }
-    } = this;
-
-
-    const opt = {
-      
+    const {state: { data, error, graph },setGraph} = this
+    const opt = { 
+      responsive: true,
       maintainAspectRatio: true,
       scales: {
-          xAxes: [{
-              ticks: {
+        xAxes: [{
+          ticks: {
                   display: true
               }
           }]
       }
     }
-
+    console.log(graph)
     
     return (
+      <>
+      <div className="graph">
+          <button className={`graph__interval ${graph === 'm1' && 'graph__interval--orange'}`} onClick={() => setGraph('m1')}>m1</button>
+          <button className={`graph__interval ${graph === 'm5' && 'graph__interval--orange'}`} onClick={() => setGraph('m5')}>m5</button>
+          <button className={`graph__interval ${graph === 'm15' && 'graph__interval--orange'}`} onClick={() => setGraph('m15')}>m15</button>
+          <button className={`graph__interval ${graph === 'm30' && 'graph__interval--orange'}`} onClick={() => setGraph('m30')}>m30</button>
+          <button className={`graph__interval ${graph === 'h1' && 'graph__interval--orange'}`} onClick={() => setGraph('h1')}>h1</button>
+          <button className={`graph__interval ${graph === 'h2' && 'graph__interval--orange'}`} onClick={() => setGraph('h2')}>h2</button>
+          <button className={`graph__interval ${graph === 'h12' && 'graph__interval--orange'}`} onClick={() => setGraph('h12')}>h12</button>
+          <button className={`graph__interval ${graph === 'd1' && 'graph__interval--orange'}`} onClick={() => setGraph('d1')}>d1</button>
+      </div>
       <div className="chart">
         {data && <Line data={data} options={opt} />}
         {error && <p>{error}</p>}
       </div>
+      </>
     );
   }
 }
 
 export default CryptoChart;
+

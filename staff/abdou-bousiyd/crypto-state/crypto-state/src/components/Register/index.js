@@ -49,7 +49,6 @@ class Register extends Component {
 
         return <div className="auth-container">
         <form className="auth-container__form" onSubmit={handleOnSubmit}>
-        {/* {error && <Alert message={error} />} */}
         {alert && alert}
 
             <h2 className="auth-container__form__title">Sign-up</h2>
@@ -62,7 +61,6 @@ class Register extends Component {
         </form>
     </div>
     }
-
 }
 
 export default Register;

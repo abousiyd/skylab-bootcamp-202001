@@ -41,8 +41,7 @@ class Login extends Component {
     }
     
     render() {
-
-        const {state: {error, alert}, handleOnToRegister, handleOnSubmit} = this
+        const {state: {alert}, handleOnToRegister, handleOnSubmit} = this
 
         return <div className="auth-container">
             <form className="auth-container__form" onSubmit={handleOnSubmit}>
@@ -55,7 +54,6 @@ class Login extends Component {
             </form>
         </div>
     }
-
 }
 
 export default Login;

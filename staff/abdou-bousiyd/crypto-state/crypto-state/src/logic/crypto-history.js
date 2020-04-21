@@ -1,7 +1,9 @@
 
-function cryptoHistory(cryptoQuery) {
+function cryptoHistory(cryptoQuery, graph) {
+
+    if(!graph) throw Error('graph should be defined')
     
-    return fetch(`https://api.coincap.io/v2/assets/${cryptoQuery}/history?interval=d1`)
+    return fetch(`https://api.coincap.io/v2/assets/${cryptoQuery}/history?interval=${graph}`)
     .then( function(response) {
         if(response.status === 200 || response.status === 404) {
             return response.json()

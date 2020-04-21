@@ -1,5 +1,4 @@
 import context from './context'
-
 /**
  * Autenticate user
  * @param {string} username

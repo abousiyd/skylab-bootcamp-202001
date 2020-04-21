@@ -11,14 +11,12 @@ describe('Get news', () => {
             })
     });
     
-    
     it('should return 0 articles when favorites is empty', () => {
         return getUserNews('en', [])
             .then((articles) => {
                 expect(articles.length).toBe(0)
             })
     });
-    
     
     it('should fail on none username', async () => {
         try {
@@ -27,7 +25,6 @@ describe('Get news', () => {
           expect(error.message).toBe('lang should be defined');
         }
       });
-    
     
     it('should fail on none password', async () => {
         try {

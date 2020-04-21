@@ -6,18 +6,17 @@ import TopBar from '../TopBar/'
 import './CryptoInfo.sass'
 
 class CryptoInfo extends Component{
-
     state = { crypto: null, error: null }
     
     componentDidMount() {
-        searchCrypto(this.props.match.params.crypto)
+        const {props: {match: {params: {crypto}}}} = this
+        
+        searchCrypto(crypto)
         .then(function(crypto){
           if(crypto){
             this.setState({crypto})
-            // console.log(crypto)
           }else{
               this.setState({error:'crypto not found'})
-
               setTimeout( () => {
                   this.props.history.push('/home') 
               }, 3000)
@@ -29,6 +28,7 @@ class CryptoInfo extends Component{
         const {
             state: {crypto, error},
             props: {match: {params: {crypto: cryptoQuery}}}
+            
           } = this
 
         return(

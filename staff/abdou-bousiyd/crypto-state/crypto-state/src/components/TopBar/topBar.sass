@@ -1,5 +1,7 @@
  
 .top-bar
+    position: fixed
+    z-index: 100
     display: flex
     justify-content: space-around
     align-items: center
@@ -29,6 +31,10 @@
             font-weight: bold
             font-size: 14px
             cursor: pointer
+            @media screen and ( max-width: 768px )
+                margin-bottom: 130px
+            &--blue
+                color: orange
             
     &__burger 
         display: none
@@ -53,19 +59,16 @@
 @media screen and ( max-width: 768px )
     .top-bar
         &__links
-            position: absolute
+            position: fixed
             right: 0px
-            height: 92vh
-            top: 50px
+            height: 100%
+            top: 50
             display: flex
             flex-direction: column
             align-items: center
-            width: 50%
-            transition: transform 0.5s ease-in
-            @media screen and ( max-width: 768px )
-                width: 100%
-                margin-right: -120%
-                background-color: red
+            transition: transform 3s ease-in
+            width: 100%
+            margin-right: -120%
 
             &__item
                 opacity: 0

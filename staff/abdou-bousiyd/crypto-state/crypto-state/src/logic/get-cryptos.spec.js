@@ -1,7 +1,6 @@
 import getCryptos from './get-cryptos'
 
 describe('Get cryptos', () => {
-
     it('should return limit of 5 cryptos', async () => {
         const cryptos = await getCryptos()
         

@@ -22,8 +22,7 @@ class News extends Component {
   handleGetUserNews = () => {
     const {state: { lang, date, user: {favs = []} }} = this;
     getUserNews(lang, favs, date)
-    .then(
-      function(news) {
+    .then(function(news) {
         if (news) {
           this.setState({ news });
         }
@@ -42,16 +41,12 @@ class News extends Component {
 
 
   render() {
-    const {
-      state: { news },
-      setLang,
-      setDate
-    } = this;
+    const {state: { news },setLang,setDate} = this;
 
     return (
+      <>
+      <TopBar />
       <div className="news">
-        <TopBar />
-       <section>
        <div className="news__langlist">
           <div className="news__langlist__lang">
             <span onClick={() => setLang('en')}>EN</span>
@@ -65,24 +60,25 @@ class News extends Component {
           </div>
         </div>
 
-        <div className="news__alert">
-          {!news.length && <Alert message="please subscribe to your favorite currencies." />}
-        </div>
+        {!news.length && <div className="news__alert">
+          <Alert className="news__alert__message" message="please subscribe to your favorite currencies." error/>
+          </div>}
 
         {news.map(section => {
             return (
               <>
                 <h1 className="news__title">{section.crypto}</h1>
-                <div className="news__section">
-                  {section.articles && section.articles.map(article => (
-                    <Acrtile article={article} />
-                  ))}
+                {section.articles && !!section.articles.length ? (
+                <div className="news__section"> {section.articles.map(article => ( <Acrtile article={article} /> ))}</div>
+                ): ( <div className="news__notfound">
+                  <div className="news__alert"> <Alert message={`No news for: ${section.crypto}`} error/></div>
                 </div>
+                )}
               </>
             );
           })}
-       </section>
       </div>
+      </>
     );
   }
 }

@@ -5,7 +5,7 @@ import './CryptoItem.sass';
 
 function CryptoItem(props){
        
-    const {cryptoInfo: {rank, priceUsd, name, changePercent24Hr, symbol, id, classStyle}, handleToggleFavs, user: {favs = []}} = props
+    const {cryptoInfo: {priceUsd, name, changePercent24Hr, symbol, id, classStyle}, handleToggleFavs, user: {favs = []}} = props
 
     const percent = parseFloat(changePercent24Hr).toFixed(2)
 

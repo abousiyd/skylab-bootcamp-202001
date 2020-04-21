@@ -5,6 +5,7 @@ import Crypto from '../Crypto'
 import searchCrypto from '../../logic/search-crypto'
 import retrieveUser from '../../logic/retrive-user'
 import Carousel from '../Carousel'
+import Alert from '../Alert'
 import './home.sass'
 
 class Cryptos extends Component {
@@ -22,7 +23,7 @@ class Cryptos extends Component {
     user: {}
   }
 
-    componentDidMount(){ //debugger
+    componentDidMount(){ 
       const pricesWs = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum,tether')
 
       pricesWs.onmessage = (msg) => {
@@ -33,13 +34,7 @@ class Cryptos extends Component {
             }})
       }
 
-      document.addEventListener('mouseover', () => { 
-        if(!this.state.cryptos.length){
-          this.callCryptos()
-        }
-      });
-
-      // this.callCryptos()
+      this.callCryptos()
       this.typeEffect()
       this.getUser()
     }
@@ -58,14 +53,14 @@ class Cryptos extends Component {
     getRandomCrypto = () => {
       const {state: {allCryptos}} = this;
       const shuffledCryptos =  allCryptos.sort(() => Math.random()  -0.3);
-      const cryptos = shuffledCryptos.splice(0, 5)
+      const cryptosCopy = [...shuffledCryptos];
+      const cryptos = cryptosCopy.splice(0, 5)
       this.setState({cryptos})
     }
 
-    callCryptos = () => {//debugger
+    callCryptos = () => {
       getCryptos()
       .then((allCryptos) => {  
-        console.log(allCryptos)
         this.setState({allCryptos})
         this.getRandomCrypto()
         setInterval(this.getRandomCrypto, 7000)
@@ -78,7 +73,7 @@ class Cryptos extends Component {
         if(crypto){
           this.setState({crypto})
         }else{
-          this.setState({error:'crypto not found'})
+          this.setState({error: <Alert message='crypto not found' error />})
           this.setState({crypto: null})
           setTimeout(() => {
             this.setState({error: null})
@@ -115,13 +110,15 @@ class Cryptos extends Component {
       <div className="cryptos-container">
           <SearchCrypto handleSearch={handleSearch} user={user}/>
     
-          <Carousel>
+         <div className="cryptos-container__home">
+         <Carousel>
+            {alert && alert}
             {error && <p>{error}</p>}
-            {!cryptos.length && <div className="cryptos-container__donut"></div>}
 
             {!crypto && !!cryptos.length &&  <h1 className="title" id="title"> </h1>}
             
             {crypto && <Crypto cryptoInfo={crypto}/>}
+            {!cryptos.length && <div className="cryptos-container__donut"></div>}
           
               <div className="cryptos-container__cryptos" id="cryptos">
                 {!!cryptos.length && cryptos.map(crypto => <Crypto  cryptoInfo={crypto}/>)}
@@ -130,7 +127,7 @@ class Cryptos extends Component {
         
           <div className='cryptos-container__socket'>
               <div className="cryptos-container__socket__crypto">
-                <img className="cryptos_container__socket__img" src="https://static.coincap.io/assets/icons/btc@2x.png" alt="crypto_image"></img>
+                <img className="cryptos-container__socket__img" src="https://static.coincap.io/assets/icons/btc@2x.png" alt="crypto_image"></img>
                 <p className="cryptos-container__socket__text">{bitcoin}$</p>
               </div>
               <div className="cryptos-container__socket__crypto">
@@ -142,6 +139,7 @@ class Cryptos extends Component {
                 <p className="cryptos-container__socket__text">{tether}$</p>
               </div>
             </div>
+         </div>
         </div>
     );
   }

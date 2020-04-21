@@ -4,9 +4,14 @@
     margin: 0 20px
     background-color: white
     padding: 10px
+    @media (max-width: 900px)
+        margin:  0 3px
+        background-color: greed
     &__imageContainer
         width: 100%
         position: relative
+        @media (max-width: 900px)
+            // background-color: red
         &__img
             width: 300px
             min-width: 300px
@@ -19,7 +24,9 @@
                 bottom: 0
                 padding: 10px
                 color: white
-                width: 100%
+                width: 93.5%
+                @media (max-width: 900px)
+                    width: 93.5%
     &__body
         background-color: white
         &__description

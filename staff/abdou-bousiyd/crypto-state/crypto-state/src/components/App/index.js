@@ -23,8 +23,6 @@ class App extends Component {
           <Route path='/home' component={Home} />
           <Route  exact path='/login' component={Login}  />
           <Route path='/register' component={Register} />
-
-
           <PrivateRoute exact path='/crypto/:crypto' component={CryptoInfo} />
           <PrivateRoute path='/state' component={State} />
           <PrivateRoute path='/news' component={News} />
