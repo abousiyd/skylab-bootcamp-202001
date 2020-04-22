@@ -1,7 +1,8 @@
 
 function cryptoHistory(cryptoQuery, graph) {
 
-    if(!graph) throw Error('graph should be defined')
+    if(!cryptoQuery) throw Error('Query should be string')
+    if(!graph) throw Error('graph should be string')
     
     return fetch(`https://api.coincap.io/v2/assets/${cryptoQuery}/history?interval=${graph}`)
     .then( function(response) {

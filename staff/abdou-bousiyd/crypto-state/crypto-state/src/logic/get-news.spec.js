@@ -18,20 +18,16 @@ describe('Get news', () => {
             })
     });
     
-    it('should fail on none username', async () => {
-        try {
-          await getUserNews()
-        } catch (error) {
-          expect(error.message).toBe('lang should be defined');
-        }
+      it('should fail on none lang', () => {
+        expect(() =>
+        getUserNews()
+          ).toThrowError(Error, 'lang should be defined')
       });
     
-    it('should fail on none password', async () => {
-        try {
-            await getUserNews('es')
-        } catch (error) {
-            expect(error.message).toBe('favs should be an array');
-        }
+    it('should fail on none favs', async () => {
+        expect(() =>
+        getUserNews('es')
+          ).toThrowError(Error, 'favs should be an array')
     });
       
 })

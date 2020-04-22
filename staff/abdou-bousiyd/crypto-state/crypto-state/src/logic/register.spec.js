@@ -16,36 +16,30 @@ describe('Register user', () => {
       password = 'password-' + Math.random()
   });
 
-  it('should fail on none name', async () => {
-      try {
-        await register()
-      } catch (e) {
-        expect(e.message).toMatch('name should be defined');
-      }
+  it('should fail on none name', () => {
+    expect(() =>
+    register()
+      ).toThrowError(Error, 'name should be defined')
   });
 
+
   it('should fail on none surname', async () => {
-      try {
-        await register(name)
-      } catch (e) {
-        expect(e.message).toBe('surname should be defined');
-      }
+    expect(() =>
+    register(name)
+      ).toThrowError(Error, 'surname should be defined')
   });
 
   it('should fail on none username', async () => {
-      try {
-        await register(name, surname)
-      } catch (e) {
-        expect(e.message).toMatch('username should be defined');
-      }
+      expect(() =>
+      register(name, surname)
+      ).toThrowError(Error, 'username should be defined')
   });
 
   it('should fail on none password', async () => {
-      try {
-        await register(name, surname, username)
-      } catch (e) {
-        expect(e.message).toMatch('password should be defined');
-      }
+    expect(() =>
+    register(name, surname, username)
+    ).toThrowError(Error, 'password should be defined')
+      
   });
 
   it('should register user', async () => {
@@ -57,12 +51,10 @@ describe('Register user', () => {
 
   });
 
-  it('should fail when user is already exist', async () => {
-    try {
-      await register(name, surname, username, password)
-    } catch (error) {
-      expect(error.message).toMatch("already exists");
-    }
-  });
-
+  it('should fail when user is already exist', () => { 
+    return register(name, surname, username, password)
+    .catch(err => { 
+    expect(err.message).toMatch('already exists') }) 
+  })
+  
 })  

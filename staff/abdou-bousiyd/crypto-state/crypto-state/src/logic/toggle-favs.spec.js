@@ -33,10 +33,8 @@ describe('Toggle favs', () => {
       
       context.token = invalidToken
     
-      try {
-        await toggleFavs('tron', [])
-      } catch (error) {
-        expect(error.message).toEqual('Invalid token');
-      }
+      return toggleFavs('tron', [])
+      .catch(err => { 
+      expect(err.message).toBe('Invalid token') }) 
     });
 })

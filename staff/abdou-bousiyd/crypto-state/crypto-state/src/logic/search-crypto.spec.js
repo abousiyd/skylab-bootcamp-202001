@@ -11,7 +11,5 @@ describe('Search crypto', () => {
     
         const crypto = await searchCrypto('lorem')
         expect(crypto).toBeUndefined()
-    });
-    
-    
+    });   
 })

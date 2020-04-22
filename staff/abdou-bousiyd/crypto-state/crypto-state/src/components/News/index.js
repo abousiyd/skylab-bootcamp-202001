@@ -1,7 +1,7 @@
 import React, { Component} from "react";
 import TopBar from '../TopBar/'
 import getUserNews from "../../logic/get-news";
-import retrieveUser from '../../logic/retrive-user'
+import retrieveUser from '../../logic/retrieve-user'
 import Acrtile from "../Article";
 import Alert from '../Alert'
 

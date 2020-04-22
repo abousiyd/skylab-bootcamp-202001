@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import updateProfile from '../../logic/update-profile'
 import toggleFavs from '../../logic/toggle-favs'
-import retriveUser from '../../logic/retrive-user'
+import retrieveUser from '../../logic/retrieve-user'
 import TopBar from '../TopBar'
 import Alert from '../Alert'
 import './Profile.sass'
@@ -16,7 +16,7 @@ class Profile extends Component {
     }
 
     getUser = () => {
-        retriveUser()
+        retrieveUser()
         .then(user => {
             if(user) {
                 this.setState({user})

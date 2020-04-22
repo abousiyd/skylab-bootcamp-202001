@@ -3,7 +3,7 @@ import getCryptos from '../../logic/get-cryptos'
 import SearchCrypto from '../NavBar/'
 import Crypto from '../Crypto'
 import searchCrypto from '../../logic/search-crypto'
-import retrieveUser from '../../logic/retrive-user'
+import retrieveUser from '../../logic/retrieve-user'
 import Carousel from '../Carousel'
 import Alert from '../Alert'
 import './home.sass'
@@ -63,7 +63,7 @@ class Cryptos extends Component {
       .then((allCryptos) => {  
         this.setState({allCryptos})
         this.getRandomCrypto()
-        setInterval(this.getRandomCrypto, 7000)
+        setInterval(this.getRandomCrypto, 5000)
       })
     }
 

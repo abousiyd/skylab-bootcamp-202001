@@ -9,5 +9,4 @@ describe('Get state', () => {
         expect(cryptos[0].id).toEqual("bitcoin")
     
     });
-
 })

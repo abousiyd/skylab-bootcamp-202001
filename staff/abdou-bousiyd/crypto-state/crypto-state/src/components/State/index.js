@@ -3,7 +3,7 @@ import CryproItem from '../CryptoItem/'
 import getState from '../../logic/get-state'
 import TopBar from '../TopBar/'
 import toggleFavs from '../../logic/toggle-favs'
-import retrieveUser from '../../logic/retrive-user'
+import retrieveUser from '../../logic/retrieve-user'
 import './state.sass';
 
 class State extends Component{

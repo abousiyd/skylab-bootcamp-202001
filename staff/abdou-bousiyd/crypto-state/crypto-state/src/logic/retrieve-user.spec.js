@@ -1,6 +1,6 @@
 import register from './register'
 import autenticate from './authenticate-user'
-import retriveUser from './retrive-user'
+import retrieveUser from './retrieve-user'
 import context from './context'
 
 describe('Retrive user', () => {
@@ -20,7 +20,7 @@ describe('Retrive user', () => {
   });
 
   it('should retrive user' ,() => {
-    return retriveUser()
+    return retrieveUser()
       .then((user) => {
           expect(user.name).toEqual(name)
           expect(user.surname).toEqual(surname)
@@ -33,21 +33,17 @@ describe('Retrive user', () => {
     
     context.token = invalidToken
   
-    try {
-      await retriveUser()
-    } catch (error) {
-      expect(error.message).toEqual('Invalid token');
-    }
+    return retrieveUser()
+    .catch(err => { 
+    expect(err.message).toBe('Invalid token') }) 
   });
   
   it('should fail when token is invalid', async () => {
     context.token = ''
-  
-    try {
-      await retriveUser()
-    } catch (error) {
-      expect(error.message).toEqual('Invalid token');
-    }
+
+    expect(() =>
+    retrieveUser()
+      ).toThrowError(Error, 'Invalid token')
   });
 })
 

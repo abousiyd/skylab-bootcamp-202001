@@ -27,54 +27,42 @@ describe('Update profile', () => {
   });
   
   
-  it('should fail on none name', async () => {
-      try {
-        await updateProfile()
-      } catch (e) {
-        expect(e.message).toMatch('name should be defined');
-      }
+
+  it('should fail on none name', () => {
+    expect(() =>
+    updateProfile()
+      ).toThrowError(Error, 'name should be defined')
   });
   
-  it('should fail on none surname', async () => {
-      try {
-        await updateProfile('victor')
-      } catch (e) {
-        expect(e.message).toBe('surname should be defined');
-      }
+  it('should fail on surnone name', () => {
+    expect(() =>
+    updateProfile('victor')
+      ).toThrowError(Error, 'surname should be defined')
+  });
+
+  it('should fail on surnone username', () => {
+    expect(() =>
+    updateProfile('lorem', 'ipsum')
+      ).toThrowError(Error, 'username should be defined')
+  });
+
+  it('should fail on none oldPassword', () => {
+    expect(() =>
+    updateProfile('a', 'b', 'c')
+      ).toThrowError(Error, 'oldPassword should be defined')
   });
   
-  it('should fail on none username', async () => {
-      try {
-        await updateProfile('lorem', 'ipsum')
-      } catch (e) {
-        expect(e.message).toMatch('username should be defined');
-      }
+  it('should fail on none password', () => {
+    expect(() =>
+    updateProfile('a', 'b', 'c', 'p')
+      ).toThrowError(Error, 'password should be defined')
   });
   
-  it('should fail on none oldPassword', async () => {
-      try {
-        await updateProfile('a', 'b', 'c')
-      } catch (e) {
-        expect(e.message).toMatch('oldPassword should be defined');
-      }
-  });
-  
-  it('should fail on none password', async () => {
-      try {
-        await updateProfile('a', 'b', 'c', 'p')
-      } catch (e) {
-        expect(e.message).toMatch('password should be defined');
-      }
-  });
-  
-  it('should fail when invalid token', async () => {
+  it('should fail when invalid token', () => { 
     context.token = null
-  
-    try {
-      await updateProfile(name, surname, username, password, 'newPassword')
-    } catch (error) {
-      expect(error.message).toEqual('invalid token');
-    }
-  });
+    return updateProfile(name, surname, username, password, 'newPassword')
+    .catch(err => { 
+    expect(err.message).toMatch('invalid token') }) 
+  })
 })
 
